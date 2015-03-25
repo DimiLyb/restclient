@@ -31,15 +31,22 @@ angular.module('ProductApp.controllers', []).
     controller('NewProductController', ['$scope', 'ProductService',
         function($scope, ProductService) {
     		$scope.addProduct = function() {
-    			var productXML = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
-            	productXML += '<product><brand>' + $scope.newProduct.brand + '</brand>';
-            	productXML += '<description>' + $scope.newProduct.description + '</description>';
-            	productXML += '<id>' + $scope.newProduct.id + '</id>';
-            	productXML += '<price>' + $scope.newProduct.price + '</price>';
-            	productXML += '<shortname>' + $scope.newProduct.shortname + '</shortname>';
-            	productXML += '<sku>' + $scope.newProduct.sku + '</sku></product>';
+    			var productjson '{\"shortname\" : \"' + $scope.newProduct.brand + ' "\",';
+    			productjson += '<description>' + $scope.newProduct.description + '</description>';
+    			productjson += '\"brand\" : ' + $scope.newProduct.id + '</id>';
+    			productjson += '\"description\" : ' + $scope.newProduct.price + '</price>';
+    			productjson += '\"id\" : ' + $scope.newProduct.shortname + '</shortname>';
+    			productjson += '\"id\" : ' + $scope.newProduct.sku + '</sku></product>';
 
     			ProductService.addProduct(productXML);
+    			
+    			jsonString += "{\"shortname\" : \"" + strings.getString("name") + "\",";
+				jsonString += "\"id\" : " + strings.getString("id") + ",";
+				jsonString += "\"brand\" : \"" + strings.getString("brand") + "\",";
+				jsonString += "\"description\" : \"" + strings.getString("discription") + "\",";
+				jsonString += "\"price\" : " + strings.getString("price") + "},";
+    			
+    			
     		};
     	}
     ]);
